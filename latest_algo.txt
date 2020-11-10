@@ -1,0 +1,52 @@
+
+Y calculation
+
+	exact_no_years_lived = (py-by)-1  //exact number of years passed excluding py and by, we are excluding py and by as they are not a complete year.
+								here we are assuming the by and py are not completely lived to get counted.
+								May be some days/months are passed or need to be passed to become a complete year.
+
+
+
+
+M and D calculation
+
+	//calculating months in by
+	if date == 1   //consider this whole month  is lived 1-3-1995
+		no_months_lived_in_by = (12 - bm) + 1   //including bm
+		no_days_lived_in_bm = 0
+		
+	else    //2-3-1995
+		no_months_lived_in_by = (12 - bm)  excluding the birth month as it is not a complete month
+		no_days_lived_in_bm =  no_days_in_month - bd + 1  here I am including the birth day even if the day is lived for less than 24 hours
+
+	//calculating months in py
+	if date != 1     // consider the whole month is not lived 2-3-2020
+		no_months_lived_in_py = pm - 1     //excliuding this  pm as it is not a complete month    (4m,2d) 1-2-3-4
+		no_days_lived_in_pm = pd           //here I am including the present day even if the day is lived for less than 24 hours
+		
+	else   // 1-3-2020
+		no_months_lived_in_py = pm -1      //excluding the birth month as it is not a complete month
+		no_days_lived_in_pm =  0           //here I am excluding the birth day even if the day is lived for some hours
+		
+		
+total_days = no_days_lived_in_bm + no_days_lived_in_pm
+extra_months = total_days/30 (Assuming each month is of 30 days)
+remaining_days = total_days - (extra_months * 30)
+
+
+total_months = no_months_lived_in_by + no_months_lived_in_py + extra_months
+extra_years = total_months/12
+remaining_months = total_months - (12 * extra_years)
+
+
+Y = exact_no_years_lived + extra_years
+M = remaining_months
+D = remaining_days
+
+		
+		
+	
+		
+		
+		
+		 
